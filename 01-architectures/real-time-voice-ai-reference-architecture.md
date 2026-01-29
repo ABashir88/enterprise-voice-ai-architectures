@@ -1,9 +1,23 @@
 # Real-Time Voice AI Reference Architecture (Enterprise)
 
 ## 1) Problem Context
-- Target enterprise use case:
-- Why “demo-ready” Voice AI fails in production:
-- Success criteria (latency, reliability, containment, compliance):
+
+This architecture targets enterprise customer support and service workflows where
+real-time Voice AI is deployed on live PSTN and SIP traffic.
+
+Unlike demo environments, production Voice AI systems must operate under:
+- Unpredictable call volume and burst concurrency
+- Strict latency expectations to avoid “dead air”
+- Noisy audio conditions and accent variability
+- Regulatory and compliance constraints (PII, call recording, retention)
+- Integration dependencies across CCaaS, CRM, and backend systems
+
+Success is measured not by model accuracy alone, but by:
+- Consistent end-to-end conversational latency
+- Graceful degradation and fallback behavior
+- Operational visibility and debuggability
+- Cost efficiency at peak traffic levels
+
 
 ## 2) High-Level Architecture
 - Ingress: PSTN / SIP / WebRTC
