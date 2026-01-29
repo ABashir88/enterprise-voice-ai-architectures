@@ -113,7 +113,58 @@ Most issues emerge from interaction effects between latency, audio quality, scal
 
 
 ## 6) How This Gets Sold (Enterprise buyer reality)
-- Buyer map (Engineering, CX, Security, Procurement):
-- Questions you must be ready to answer:
-- Proof that wins (benchmarks, pilot design, references):
-- Typical objections and how to handle them:
+
+Enterprise Voice AI initiatives are evaluated as **infrastructure decisions**, not experiments.
+Buying decisions involve multiple stakeholders with competing priorities.
+
+### Buyer map
+
+- **Engineering / Platform**
+  - Latency, reliability, scalability, observability
+  - Control over media path and AI components
+  - Clear failure handling and fallback design
+
+- **CX Operations**
+  - Containment rates and customer experience
+  - Consistency across channels (voice, chat, agent handoff)
+  - Operational visibility and alerting
+
+- **Security / Compliance**
+  - PII handling, retention, and redaction
+  - Call recording and transcript storage policies
+  - Vendor certifications and data residency
+
+- **Procurement / Finance**
+  - Predictable cost structure at scale
+  - Exposure to peak concurrency and overages
+  - Vendor dependency and long-term flexibility
+
+### Discovery questions that surface real requirements
+
+- What is the acceptable end-to-end latency before callers disengage?
+- How do call volumes behave during peak events or incidents?
+- Where do STT/TTS/LLM requests execute relative to the media path?
+- What happens when an AI component slows down or fails?
+- How do you observe and debug issues that only happen intermittently?
+- Which integrations are on the critical path during a live call?
+- What proof would make this safe to deploy in production?
+
+### What proof wins enterprise deals
+
+- Measured latency benchmarks under load
+- Clear architectural diagrams and failure scenarios
+- Pilot designs that simulate peak traffic
+- Security documentation aligned to call data handling
+- Reference customers running similar workloads
+
+### Common objections and how they are addressed
+
+- **“The demo worked fine”**  
+  → Reframe around peak load, long-tail latency, and failure handling.
+
+- **“Accuracy is our main concern”**  
+  → Show how latency and audio quality directly impact perceived accuracy.
+
+- **“We’ll optimize later”**  
+  → Highlight how early architectural choices determine long-term cost and reliability.
+
