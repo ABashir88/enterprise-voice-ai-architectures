@@ -70,11 +70,47 @@ talk-over, even during peak concurrency.
 - Where optimization has the biggest impact:
 
 ## 5) Failure Modes & Operational Risks
-- STT domain drift / accent / noise:
-- “Dead air” and turn-taking issues:
-- Packet loss, jitter, and audio quality:
-- Vendor dependency and fallback design:
-- Logging/PII and retention considerations:
+
+In production environments, Voice AI failures are rarely caused by a single component.
+Most issues emerge from interaction effects between latency, audio quality, scale, and integrations.
+
+### Common failure modes
+
+- **Dead air and delayed responses**  
+  Often caused by LLM inference variability or downstream tool calls. Even small delays compound user frustration in live calls.
+
+- **Talk-over and barge-in failures**  
+  Poor turn-taking when STT partials, endpoint buffering, or playback timing drift out of sync.
+
+- **STT degradation under real conditions**  
+  Accents, background noise, cross-talk, and low-quality PSTN audio increase transcription latency and error rates.
+
+- **Long-tail latency during peak load**  
+  Concurrency spikes introduce queueing delays across STT, TTS, and inference layers, even if average latency looks acceptable.
+
+- **Tool and integration bottlenecks**  
+  CRM, ticketing, or knowledge-base calls introduce unpredictable delays and partial failures outside the AI stack.
+
+- **Audio quality and packet loss issues**  
+  Network jitter, codec mismatch, or geographic routing distance degrade both user experience and STT accuracy.
+
+- **Vendor dependency and fallback gaps**  
+  Single-provider STT, TTS, or inference increases blast radius during regional outages or performance regressions.
+
+- **Observability blind spots**  
+  Without per-turn metrics (latency, confidence, retries), teams struggle to debug failures that only occur intermittently.
+
+- **Compliance and data handling risk**  
+  Call recording, transcript storage, and model logging can unintentionally expose PII if retention and redaction are not explicit.
+
+### Mitigation strategies
+
+- Design for **graceful degradation** (handoff to agent or IVR fallback)
+- Set **latency SLOs per component**, not just end-to-end averages
+- Use **multi-region and multi-vendor fallback** where feasible
+- Instrument **per-turn observability** (audio quality, STT confidence, response time)
+- Limit blast radius by isolating AI components from core call routing
+
 
 ## 6) How This Gets Sold (Enterprise buyer reality)
 - Buyer map (Engineering, CX, Security, Procurement):
