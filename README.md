@@ -40,3 +40,9 @@ It is an **architecture and systems thinking repository**.
 
 ## Repository Structure
 
+| Folder | Contents |
+|---|---|
+| `01-architectures` | Reference architecture diagrams and system design breakdowns |
+| `02-cost-latency-models` | Cost modeling frameworks and latency budget analysis |
+| `03-sales-engineering-playbooks` | Discovery frameworks, qualification criteria, technical validation guides |
+| `04-mvp-demos` | Proof-of-concept demos and experimental implementations |
